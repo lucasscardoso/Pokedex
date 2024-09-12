@@ -21,8 +21,4 @@ export class PokeListComponent {
     )
   }
 
-public listAllPokemon(pokemon:any){
-  return this.getAllPokemons;
-}
-
 }
