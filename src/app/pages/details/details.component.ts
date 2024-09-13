@@ -15,21 +15,22 @@ export class DetailsComponent {
   private urlPokemon:string = 'https://pokeapi.co/api/v2/pokemon';
   private urlName:string = 'https://pokeapi.co/api/v2/pokemon-species';
 
+  public pokemon: any;
 
   constructor(private activatedRoute:ActivatedRoute,private pokeApiService:PokeApiService){}
 
   ngOnInit(){
-    this.pokemon
+    this.getPokemon
   }
 
-  get pokemon(){
+  get getPokemon(){
     const id = this.activatedRoute.snapshot.params['id'];
     const pokemon = this.pokeApiService.apiGetPokemons(`${this.urlPokemon}/${id}`);
     const name = this.pokeApiService.apiGetPokemons(`${this.urlName}/${id}`);
 
     return forkJoin([pokemon,name]).subscribe(
       res => {
-        console.log(res)
+        this.pokemon = res;
       }
     );
   }
