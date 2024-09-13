@@ -8,6 +8,8 @@ import { PokeApiService } from 'src/app/service/poke-api.service';
 })
 export class PokeListComponent {
 
+  public apiError:boolean = false;
+
   public setAllPokemons: any;
   public getAllPokemons: any;
 
@@ -19,7 +21,10 @@ export class PokeListComponent {
 
         this.setAllPokemons = res.results;
         this.getAllPokemons = this.setAllPokemons;
-
+        
+      },
+      error => {
+        this.apiError = true;
       }
     );
   }
